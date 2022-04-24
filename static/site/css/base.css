@@ -1,0 +1,290 @@
+/* Page */
+html {
+  font-size: 100%;
+  font-family: Helvetica Neue, Arial, "Liberation Sans", sans-serif;
+  color: black;
+  background: white;
+}
+body {
+  margin: 0;
+}
+
+/* Titres */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 1em 0 0.5em 0;
+  font-weight: bold;
+  font-style: normal;
+}
+h1 {
+  font-size: 1.6em;
+  color: #111;
+}
+h2 {
+  font-size: 1.2em;
+  color: #111;
+}
+h3 {
+  font-size: 1.05em;
+  color: #333;
+}
+h4 {
+  font-size: 1em;
+  color: #333;
+}
+h5 {
+  font-size: 1em;
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* Listes */
+ul,
+ol {
+  margin: 0.75em 0 0.75em 32px;
+  padding: 0;
+}
+li {
+  margin: 0;
+  padding: 0;
+}
+dl {
+  margin: 0.75em 0;
+  padding: 0;
+}
+dt {
+  margin: 0.75em 0 0 0;
+  padding: 0;
+  font-weight: bold;
+}
+dd {
+  margin: 0.25em 0 0.25em 32px;
+  padding: 0;
+}
+
+/* Paragraphes */
+p {
+  margin: 0.75em 0;
+}
+li p,
+blockquote p {
+  margin: 0.5em 0;
+}
+address {
+  font-style: normal;
+}
+
+/* Citations */
+blockquote {
+  margin: 0.75em 0 0.75em 20px;
+  padding: 0 0 0 10px;
+  border-left: solid 2px #ccc;
+}
+q {
+  font-style: italic;
+}
+cite {
+  font-style: italic;
+}
+blockquote,
+q {
+  quotes: none;
+}
+
+/* Liens */
+a {
+  color: mediumblue;
+  text-decoration: underline;
+}
+a:visited {
+  color: indigo;
+}
+a:hover,
+a:focus,
+a:active {
+  color: crimson;
+}
+a img {
+  border: none;
+}
+
+/* Divers éléments inline */
+em {
+  font-style: italic;
+}
+strong {
+  font-weight: bold;
+}
+del {
+  text-decoration: line-through;
+}
+
+/* Formulaires */
+form,
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+input,
+button,
+select {
+  vertical-align: middle;
+}
+
+@media print {
+  /* --- STYLES GÉNÉRIQUES --- */
+
+  /* Modifications */
+  body {
+    font-size: 10pt;
+    line-height: 1.4;
+    color: black;
+    background: white;
+  }
+  a,
+  a:visited {
+    color: black;
+    text-decoration: none;
+  }
+  p {
+    margin: 0.5em 0;
+  }
+  h1 {
+    margin: 1em 0 1.5em;
+    font-size: 16pt;
+  }
+
+  /* --- GÉNÉRIQUE --- */
+
+  .header-title {
+    text-align: center;
+    margin: 0;
+  }
+  .header-title--home img:first-child {
+    display: none;
+  }
+  .header-title img {
+    width: 3.5cm;
+  }
+  .header-social-links {
+    display: none;
+  }
+  .main-nav {
+    display: none;
+  }
+  #sidebar {
+    display: none;
+  }
+  #footer {
+    display: none;
+  }
+
+  /* --- CONTENU --- */
+
+  /* Liste expos */
+  .expos-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .expo-card {
+    margin: 1em 0;
+    overflow: hidden;
+  }
+  .expo-card img {
+    float: left;
+    margin-right: 1em;
+  }
+
+  /* Fiches expo */
+  .expo-top h1 {
+    padding: 0 15%;
+    text-align: center;
+  }
+  .expo-intro {
+    margin: 1em 0;
+    font-size: 11pt;
+    font-style: italic;
+  }
+  .expo-image {
+    float: left;
+    max-width: 35%;
+    margin: 0 20px 20px 0;
+  }
+  .expo-image img {
+    max-width: 100%;
+  }
+  .expo-actions {
+    display: none;
+  }
+  .expo-info {
+    margin: 1em 0;
+  }
+  .expo-info h2,
+  .expo-info p {
+    display: inline;
+    font-size: inherit;
+  }
+  .expo-tabs-nav {
+    display: none;
+  }
+  .expo-tab[hidden] {
+    display: block;
+  }
+  .expo-tab#galerie {
+    display: none;
+  }
+  .expo-tabs h2 {
+    clear: both;
+    margin: 1.5em 30% 0.75em;
+    padding-top: 1em;
+    border-top: solid 1px #808080;
+    font-size: 14pt;
+    text-align: center;
+  }
+
+  /* Tableau */
+  #tarifs {
+    page-break-inside: avoid;
+  }
+  .pricing table {
+    width: 100%;
+    margin: 0;
+    border: solid 1px #ccc;
+    border-spacing: 0;
+    border-collapse: collapse;
+  }
+  .pricing th {
+    padding: 6px 10px;
+    border: solid 1px #ccc;
+    font-weight: normal;
+    text-align: left;
+    color: #111;
+    background: white;
+  }
+  .pricing tr:first-child > th {
+    background: #e4e4e4;
+  }
+  .pricing th + th {
+    text-align: right;
+  }
+  .pricing td {
+    padding: 6px 10px;
+    text-align: right;
+    border: solid 1px #ccc;
+    color: #555;
+    background: #fdfff2;
+  }
+
+  /* Illustrateurs */
+  #list-illus ul {
+    margin: 1em 0;
+    padding: 0;
+    list-style: none;
+  }
+}

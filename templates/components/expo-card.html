@@ -1,0 +1,24 @@
+{% load thumbnail %}
+<li class="expo-card expo-card--{{ variant|default:'normal' }}">
+  <h3 class="expo-card-title">
+    <a href="{{ expo.get_absolute_url }}">
+    {% if variant|default:'normal' == 'large' %}
+      {% thumbnail expo.vignette '120x120' crop='center' as img %}
+        <img src="{{ img.url }}" alt="" loading="lazy">
+      {% endthumbnail %}
+    {% else %}
+      {% thumbnail expo.vignette '80x80' crop='center' as img %}
+        <img src="{{ img.url }}" alt="" loading="lazy">
+      {% endthumbnail %}
+    {% endif %}
+    {{ expo.titre|safe }}
+    </a>
+  </h3>
+  <p class="expo-card-teaser">
+    {% if truncatewords %}
+      {{ expo.chapo|striptags|truncatewords:truncatewords|safe }}
+    {% else %}
+      {{ expo.chapo|striptags|truncatewords:30|safe }}
+    {% endif %}
+  </p>
+</li>

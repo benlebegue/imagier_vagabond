@@ -1,0 +1,25 @@
+{% load thumbnail %}
+<section id="galerie" class="expo-tab">
+  <h2>Galerie</h2>
+  <ul class="gallery-links">
+    {% for pic in pics %}
+    <li>
+      {% thumbnail pic.image '880x700' upscale=False as full_img %}
+      <a href="{{ full_img.url }}">
+        {% thumbnail pic.image '120x120' crop='center' as small_img %}
+        <img width="68" height="68" src="{{ small_img.url }}" alt="{{ pic.legende }}" loading="lazy">
+        {% endthumbnail %}
+      </a>
+      {% endthumbnail %}
+    </li>
+    {% endfor %}
+  </ul>
+  <figure class="gallery-display">
+  {% with pics|first as pic %}
+    {% thumbnail pic.image '880x700' upscale=False as placeholder_img %}
+    <img src="{{ placeholder_img.url }}" alt="" loading="lazy">
+    {% endthumbnail %}
+    <figcaption>{{ pic.legende }}</figcaption>
+  {% endwith %}
+  </figure>
+</section>

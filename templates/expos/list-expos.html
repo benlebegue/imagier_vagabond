@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+
+{% block page_title_current %}Catalogue des expositions{% endblock %}
+{% block body_class %}list-expos{% endblock %}
+
+{% block main_content %}
+  <h1>Catalogue des expositions de l’Imagier Vagabond</h1>
+  {% if all_expos %}
+    <ul class="expos-list expos-list-main">
+    {% for expo in all_expos %}
+      {% include 'components/expo-card.html' with variant='large' truncatewords=100 %}
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock main_content %}
+
+{% block sidebar %}
+  <div class="module expo-list-display">
+    <h2>Options d’affichage</h2>
+    <div class="nav">
+      <p>Affichage des expositions:</p>
+      <ul class="bigger">
+        <li>{% if not sort_expos %}<em>alphabétique</em>{% else %}<a href="/expos/">alphabétique</a>{% endif %}</li>
+        <li>{% if sort_expos %}<em>inverse</em>{% else %}<a href="/expos/inv">inverse</a>{% endif %}</li>
+      </ul>
+      <p>Vous pouvez aussi consulter le catalogue via
+      <a href="/illustrateurs/">les pages des illustrateurs</a> ou celles des
+      <a href="/themes/">thèmes des expositions</a>.</p>
+    </div>
+  </div>
+{% endblock sidebar %}

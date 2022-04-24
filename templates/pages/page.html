@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block page_title_current %}{{ this_page.titre }}{% endblock %}
+{% block body_class %}page-single{% endblock %}
+
+{% block main_content %}
+  <h1>{{ this_page.titre }}</h1>
+  <section class="content">
+    {% if not all_illus %}
+      {{ this_page.principal|safe }}
+    {% endif %}
+    {% if all_illus %}
+      {% for illu in all_illus %}
+        {% if illu.site_web %}
+          <p>
+            <strong>{{ illu.prenom }} {{ illu.nom }}:</strong><br />
+            <a href="{{ illu.site_web }}">{{ illu.site_web }}</a>
+          </p>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  </section>
+{% endblock main_content %}
+
+{% block sidebar %}
+  <div class="module category-pages">
+    <h2>Pages de la catégorie</h2>
+    <ul>
+      {% for page in this_cat_pages %}{% ifequal page.url this_page.url %}
+      <li class="current">{{ page.titre }}</li>{% else %}
+      <li><a href="{{ page.get_absolute_url }}">{{ page.titre }}</a></li>
+      {% endifequal %}{% endfor %}
+    </ul>
+  </div>
+{% endblock %}

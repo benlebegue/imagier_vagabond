@@ -1,0 +1,35 @@
+<section id="fiche-tech" class="expo-tab">
+  <h2>Fiche technique</h2>
+  <div class="data">
+    <h3>Mesures</h3>
+    {% if tech.info_nb_origin %}{% ifnotequal tech.info_nb_origin 0 %}<p class="origin">
+      <strong>{{ tech.info_nb_origin }}</strong>
+      <span>originaux</span>
+    </p>{% endifnotequal %}{% endif %}
+    {% if tech.info_nb_cadres %}{% ifnotequal tech.info_nb_cadres 0 %}<p class="cadres">
+      <strong>{{ tech.info_nb_cadres }}</strong>
+      <span>cadres</span>
+    </p>{% endifnotequal %}{% endif %}
+    {% if tech.metre_lineaire %}{% ifnotequal tech.metre_lineaire 0 %}<p class="metre">
+      <strong>Mètre linéaire: {{ tech.metre_lineaire }}m environ</strong>
+      <span>(avec un écart de 20cm entre les cadres)</span>
+    </p>{% endifnotequal %}{% endif %}
+    {% if tech.info_detail %}<div class="more">
+      {{ tech.info_detail|safe }}
+    </div>{% endif %}
+  </div>
+  {% if tech.sceno_banniere or tech.sceno_principal or tech.sceno_autres %}
+    <div class="sceno">
+      <h3>Éléments de scénographie</h3>
+      {% if tech.sceno_banniere %}<div class="ban">
+        {{ tech.sceno_banniere|safe }}
+      </div>{% endif %}
+      {% if tech.sceno_principal %}<div class="main">
+        {{ tech.sceno_principal|safe }}
+      </div>{% endif %}
+      {% if tech.sceno_autres %}<div class="more">
+        {{ tech.sceno_autres|safe }}
+      </div>{% endif %}
+    </div>
+  {% endif %}
+</section>

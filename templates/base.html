@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>
+  {% block page_title %}
+    {% block page_title_current %}{% endblock %}
+    {% block page_title_separator %}—{% endblock %}
+    {% block page_title_sitename %}L’Imagier Vagabond{% endblock %}
+  {% endblock %}
+  </title>
+  {% block styles %}
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="{% static 'site/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'site/css/screen.css' %}" media="screen">
+    <link rel="icon" type="image/png" href="{% static 'site/img/favicon.png' %}">
+  {% endblock %}
+  {% block extra_head %}{% endblock %}
+</head>
+
+<body id="{{ nav_keyword }}" class="{% block body_class %}default{% endblock %}">
+
+<header id="header">
+  
+  <div class="header-top">
+    {% ifequal nav_keyword 'home' %}
+      <h1 class="header-title header-title--home">
+        <img src="{% static 'site/img/header-butterfly.png' %}" alt="">
+        <img src="{% static 'site/img/header-title-in.png' %}" alt="Imagier Vagabond, promotion de l’illustration jeunesse">
+      </h1>
+    {% else %}
+      <p class="header-title header-title--base">
+        <a href="/"><img src="{% static 'site/img/header-logo-small.png' %}" alt="Imagier Vagabond"></a>
+      </p>
+    {% endifequal %}
+    {% block header_info %}
+      <div class="header-info">
+        {% include 'components/social-links.html' %}
+      </div>
+    {% endblock %}
+  </div>
+  
+  {% block header_nav %}
+    {% include 'components/main-nav.html' %}
+  {% endblock %}
+  {% block header_more %}{% endblock %}
+</header>
+
+{% block main %}
+<div id="main">
+  <main id="main-content">
+    {% block main_content %}{% endblock %}
+  </main>
+  <aside id="sidebar">
+    {% block sidebar %}{% endblock %}
+  </aside>
+</div>
+{% endblock main %}
+
+<footer id="footer">
+<p>
+  &copy; 2008-2021 Imagier Vagabond<br>
+  <a href="/info/mentions-legales">Mentions légales</a> /
+  <a href="/info/contact">Contact</a>
+</p>
+</footer>
+
+{% block scripts %}
+<script src="{% static 'site/js/custom.js' %}"></script>
+{% include 'components/google-analytics.html' with GA_ID='UA-216700056-1' %}
+{% include 'components/facebook-pixel.html' with FB_ID='371426240315137' %}
+{% endblock %}
+
+</body>
+</html>

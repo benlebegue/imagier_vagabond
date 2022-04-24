@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block page_title_current %}Une erreur s’est produite{% endblock %}
+{% block body_class %}error-500{% endblock %}
+
+{% block main_content %}
+  <div id="error-page" class="error-500">
+    <h1>Une erreur s’est produite sur le serveur</h1>
+    <p>Suite à une erreur sur le serveur, nous n’avons pas pu afficher la
+    page demandée ou traiter vos informations.</p>
+    <p>Si cette erreur persiste, merci de nous le signaler à
+    <span class="nospam">webmaster (arobase) imagiervagabond.fr</span>.
+    Nous le corrigerons dès que possible.</p>
+  </div>
+{% endblock main_content %}
+
+{% block sidebar %}
+  <div class="module error-page">
+    <h2>En attendant:</h2>
+    <ul>
+      <li><a href="/">Retourner à l’accueil</a></li>
+      <li><a href="/expos/">Aller à la liste des expositions</a></li>
+      <li><a href="/info/contact">Contacter l’Imagier</a></li>
+    </ul>
+  </div>
+{% endblock sidebar %}

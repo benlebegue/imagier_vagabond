@@ -1,0 +1,26 @@
+<ul class="main-nav">
+  <li class="home">
+    <a href="/"{% ifequal nav_keyword 'home' %} aria-current="true"{% endifequal %}>Accueil</a>
+  </li>
+  {% block search_bar %}
+  {% include 'components/search.html'%}
+  {% endblock %}
+  <li class="services">
+    <a href="/services/"{% ifequal nav_keyword 'services' %} aria-current="true"{% endifequal %}>Services</a>
+  </li>
+  <li class="expos">
+    <a href="/expos/"{% ifequal nav_keyword 'expos' %} aria-current="true"{% endifequal %}>Expositions</a>
+  </li>
+  <li class="illus">
+    <a href="/illustrateurs/"{% ifequal nav_keyword 'illus' %} aria-current="true"{% endifequal %}>Illustrateurs</a>
+  </li>
+  <li class="themes">
+    <a href="/themes/"{% ifequal nav_keyword 'themes' %} aria-current="true"{% endifequal %}>Thèmes</a>
+  </li>
+  <li class="info">
+    <a href="/info/"{% ifequal nav_keyword 'info' %} aria-current="true"{% endifequal %}>À&nbsp;propos&nbsp;/&nbsp;Contact</a>
+  </li>
+  <li class="liens">
+    <a href="/liens/"{% ifequal nav_keyword 'liens' %} aria-current="true"{% endifequal %}>Liens</a>
+  </li>
+</ul>

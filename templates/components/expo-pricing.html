@@ -1,0 +1,81 @@
+<section id="tarifs" class="expo-tab">
+  <h2>Tarifs</h2>
+  <div class="pricing">
+    <h3>Tarifs de location</h3>
+    {% if tech.tarif2 %}
+      <table>
+        <tr>
+          <th scope="col">Durée de la location</th>
+          <th scope="col">Tarif <abbr title="hors taxes">HT</abbr></th>
+          <th scope="col">Tarif <abbr title="taxes comprises">TTC</abbr></th>
+        </tr>
+        <tr>
+          <th scope="row">Une semaine</th>
+          <td>{{ tech.tarif2_1s_ht }}&nbsp;&euro;</td>
+          <td>{{ tech.tarif2_1s_ttc }}&nbsp;&euro;</td>
+        </tr>
+        <tr>
+          <th scope="row">Deux semaines</th>
+          <td>{{ tech.tarif2_2s_ht }}&nbsp;&euro;</td>
+          <td>{{ tech.tarif2_2s_ttc }}&nbsp;&euro;</td>
+        </tr>
+        <tr>
+          <th scope="row">Trois semaines</th>
+          <td>{{ tech.tarif2_3s_ht }}&nbsp;&euro;</td>
+          <td>{{ tech.tarif2_3s_ttc }}&nbsp;&euro;</td>
+        </tr>
+        <tr>
+          <th scope="row">Quatre&nbsp;semaines /&nbsp;un&nbsp;mois</th>
+          <td>{{ tech.tarif2_4s_ht }}&nbsp;&euro;</td>
+          <td>{{ tech.tarif2_4s_ttc }}&nbsp;&euro;</td>
+        </tr>
+        <tr style="font-style:italic">
+          <th scope="row">Semaine supplémentaire</th>
+          <td>{{ tech.tarif2_sup_ht }}&nbsp;&euro;</td>
+          <td>{{ tech.tarif2_sup_ttc }}&nbsp;&euro;</td>
+        </tr>
+      </table>
+    {% endif %}
+    {% if tech.tarif and not tech.tarif2 %}
+      <table>
+        <tr>
+          <th scope="col">Durée de la location</th>
+          <th scope="col">Tarif <abbr title="hors taxes">HT</abbr></th>
+          <th scope="col">Tarif <abbr title="taxes comprises">TTC</abbr></th>
+        </tr>
+        <tr>
+          <th scope="row">Une semaine</th>
+          <td>{{ tech.tarif_s1 }}&nbsp;&euro;</td>
+          <td>{{ tech.tarif_s1_ttc }}&nbsp;&euro;</td>
+        </tr>
+        <tr>
+          <th scope="row">Deux semaines</th>
+          <td>{{ tech.tarif_upto_s2 }}&nbsp;&euro;</td>
+          <td>{{ tech.tarif_upto_s2_ttc }}&nbsp;&euro;</td>
+        </tr>
+        <tr>
+          <th scope="row">Trois semaines</th>
+          <td>{{ tech.tarif_upto_s3 }}&nbsp;&euro;</td>
+          <td>{{ tech.tarif_upto_s3_ttc }}&nbsp;&euro;</td>
+        </tr>
+        <tr>
+          <th scope="row">Quatre semaines</th>
+          <td>{{ tech.tarif_upto_s4 }}&nbsp;&euro;</td>
+          <td>{{ tech.tarif_upto_s4_ttc }}&nbsp;&euro;</td>
+        </tr>
+      </table>
+    {% endif %}
+    {% if not tech.tarif and not tech.tarif2 %}
+      <p>Les tarifs de location pour cette exposition ne sont pas encore déterminés.</p>
+    {% endif %}
+  </div>
+  <div class="insurance">
+    <h3>Assurance et transport</h3>
+    <p class="assur">
+      <strong>Valeur à assurer:</strong>
+      <span>{% ifequal tech.assurance 0 %}à déterminer{% else %}{{ tech.assurance }}&nbsp;&euro;{% endifequal %}</span>
+      {% if tech.assurance_info %}<span>({{ tech.assurance_info }})</span>{% endif %}
+    </p>
+    <p class="info">Le transport et l’assurance sont <a href="/services/transport-expositions">à la charge du loueur (en savoir plus)</a>.</p>
+  </div>
+</section>

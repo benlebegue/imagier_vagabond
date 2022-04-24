@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block page_title_current %}Thèmes des expositions{% endblock %}
+{% block body_class %}list-themes{% endblock %}
+
+{% block main_content %}
+  <h1>Thèmes des expositions</h1>
+  {% if all_themes %}
+    <ul id="list-themes">
+      {% for theme in all_themes %}
+        <li><a href="{{ theme.get_absolute_url }}">{{ theme.nom }}</a>{% if not forloop.last %}<span>•</span>{% endif %}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock main_content %}
+
+{% block sidebar %}
+  <div class="module">
+    {{ themes_info.contenu|safe }}
+  </div>
+{% endblock sidebar %}

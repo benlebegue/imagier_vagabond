@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+
+{% block page_title_current %}Illustrateurs exposés{% endblock %}
+{% block body_class %}list-illus{% endblock %}
+
+{% block main_content %}
+  <h1>Illustrateurs exposés</h1>
+  <div id="list-illus">
+    <h2>Trombinoscope</h2>
+    <ul>
+    {% for illus in all_illus_random %}
+      <li class="normal"><a href="{{ illus.get_absolute_url }}">
+        {% if illus.portrait %}
+          {% thumbnail illus.portrait '120x120' crop='center' as img %}
+            <img src="{{ img.url }}" alt="" loading="lazy" />
+          {% endthumbnail %}
+        {% endif %}
+        <strong>{% if illus.prenom %}{{ illus.prenom }} {% endif %}<span>{{ illus.nom }}</span></strong>
+      </a></li>
+    {% endfor %}
+    {% if all_illus_notround %}
+      <li class="special">
+        <em>Vous êtes illustrateur? <span><a href="/info/contact" rel="nofollow">Pourquoi pas vous?</a></span></em>
+      </li>
+    {% endif %}
+    </ul>
+  </div>
+{% endblock main_content %}
+
+{% block sidebar %}
+  <div class="module all-illus">
+    <h2>Tous les illustrateurs</h2>
+    <ul>
+    {% for illus in all_illus %}
+      <li><a href="{{ illus.get_absolute_url }}">
+        {{ illus.prenom }} {{ illus.nom }}
+      </a></li>
+    {% endfor %}
+    </ul>
+  </div>
+{% endblock sidebar %}

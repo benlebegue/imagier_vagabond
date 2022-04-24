@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+
+{% block page_title_current %}{{ expo.titre }}{% endblock %}
+{% block body_class %}fiche-expo{% endblock %}
+
+{% block main %}
+<div class="expo-top">
+  <h1>{{ expo.titre }}</h1>
+</div>
+
+<div class="expo-main">
+  <div class="expo-image">
+    {% thumbnail expo.vignette '300x1000' as img %}
+      <img src="{{ img.url }}" alt="">
+    {% endthumbnail %}
+  </div>
+  <section class="expo-content">
+    <div class="expo-intro">
+      {{ expo.chapo|safe }}
+    </div>
+    <div class="expo-body">
+      {{ expo.descriptif|safe }}
+    </div>
+    <div class="expo-metadata">
+      <div class="expo-metadata-item">
+      {% with expo.illustrateurs.all as illustrateurs %}
+        <h2>Illustrateur{{ illustrateurs|pluralize }}:</h2>
+        <p>{% for illus in illustrateurs %}
+          <a href="{{ illus.get_absolute_url }}">{{ illus.prenom }}
+          {{ illus.nom }}</a>{% if not forloop.last %},{% endif %}
+        {% endfor %}</p>
+      {% endwith %}
+      </div>
+      <div class="expo-metadata-item">
+        <h2>Thèmes de l’exposition:</h2>
+        <p>{% for theme in expo.themes.all %}
+          <a href="{{ theme.get_absolute_url }}">{{ theme.nom }}</a>{% if not forloop.last %},{% endif %}{% endfor %}
+        </p>
+      </div>
+    </div>
+  </section>
+  {% include 'components/expo-actions.html' %}
+</div>
+
+<div class="expo-tabs">
+  {% if pics %}
+    {% include 'components/expo-galerie.html' %}
+  {% endif %}
+  {% if books %}
+    {% include 'components/expo-biblio.html' %}
+  {% endif %}
+  {% if tech %}
+    {% include 'components/expo-tech.html' %}
+    {% include 'components/expo-pricing.html' %}
+  {% endif %}
+</div>
+{% endblock main %}

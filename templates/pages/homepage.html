@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+
+{% block page_title %}L’Imagier Vagabond, location expositions clef en main illustration jeunesse{% endblock %}
+{% block body_class %}home{% endblock %}
+
+{% block header_info %}
+  <div class="header-info">
+    {{ presentation.contenu|safe }}
+    {% include 'components/social-links.html' %}
+  </div>
+{% endblock %}
+
+{% block main %}
+<main class="home-main">
+  <div class="home-title">
+    <h2>Parcourez le <a href="/expos/">catalogue</a></h2>
+  </div>
+  <div class="home-cols">
+    <section class="home-col">
+      <div class="title">
+        <h3><span>Expositions</span> à la une</h3>
+        <p>(<a href="/expos/" title="Liste complète des expositions">plus</a>)</p>
+      </div>
+      {% if some_expos %}
+        <ul class="expos-list expos-list-home">
+          {% for expo in some_expos %}
+            {% include 'components/expo-card.html' with truncatewords=16 %}
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </section>
+    <section class="home-col home-tags">
+      <div class="title">
+        <h3><span>Illustrateurs</span> exposés</h3>
+        <p>(<a href="/illustrateurs/" title="Tous les illustrateurs">plus</a>)</p>
+      </div>
+      {% if some_illus %}
+        <ul>
+          {% for illus in some_illus %}
+            <li><a href="{{ illus.get_absolute_url }}">{{ illus.prenom }} {{ illus.nom|upper }}</a>&nbsp;•{% if forloop.last %}&nbsp;etc.{% endif %}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </section>
+    <section class="home-col home-tags">
+      <div class="title">
+        <h3><span>Thèmes</span> des expos</h3>
+        <p>(<a href="/themes/" title="Tous les thèmes">plus</a>)</p>
+      </div>
+      {% if some_themes %}
+        <ul>
+          {% for theme in some_themes %}
+            <li><a href="{{ theme.get_absolute_url }}">{{ theme.nom }}</a>&nbsp;•{% if forloop.last %}&nbsp;etc.{% endif %}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </section>
+  </div>
+</main>
+{% endblock main %}
+
+{% block main_content %}
+{% endblock main_content %}

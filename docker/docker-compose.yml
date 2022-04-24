@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    container_name: imagier_web
+    tty: true
+    volumes:
+      - "$HOME/workspace/imagiervagabond:/home/site/imagiervagabond:rw"
+    ports:
+      - "8000:8000"
+      - "8001:8001"
+    networks:
+      - imagier
+  db:
+    image: mysql:5.7
+    container_name: imagier_db
+    ports:
+      - "4006:3306"
+    networks:
+      - imagier
+    environment:
+      MYSQL_ROOT_PASSWORD: racine
+
+networks:
+  imagier:

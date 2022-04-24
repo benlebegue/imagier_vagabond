@@ -1,0 +1,30 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block extrahead %}
+{{ super }}
+<link rel="stylesheet" href="{% static 'site/css/admin.css' %}">
+{% endblock %}
+
+{# Not a great place to put scripts, but we want to load after jQuery and Django's admin would output our own 'extrahead' code first, then the 'extrahead' code from specific pages (including jQuery). #}
+{% block footer %}
+{{ super }}
+<script src="{% static 'dist/ckeditor.js' %}"></script>
+<script>
+  const CKEDITOR_TEXTAREA_SELECTOR = `
+    #page_form #id_intro,
+    #page_form #id_principal,
+    #bloc_form #id_contenu,
+    #exposition_form #id_chapo,
+    #exposition_form #id_descriptif,
+    #fichetechnique_form #id_info_detail,
+    #id_sceno_principal,
+    #id_sceno_banniere,
+    #id_sceno_autres,
+    #illustrateur_form #id_presentation
+  `;
+  for (const element of document.querySelectorAll(CKEDITOR_TEXTAREA_SELECTOR)) {
+    ClassicEditor.create(element).catch((error) => console.error(error));
+  }
+</script>
+{% endblock %}

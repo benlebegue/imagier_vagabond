@@ -1,0 +1,8 @@
+<section id="biblio" class="expo-tab">
+  <h2>Livres</h2>
+  {% for book in books %}<p>
+    <cite>{{ book.titre }}</cite>,
+    <span class="auteurs">{{ book.auteurs }}</span>
+    {% if book.editeur %}<span class="edition">({{ book.editeur }}, {# if book.collection %}«{{ book.collection }}»,{% endif #}{% if book.annee %}{{ book.annee }}){% endif %}</span>{% endif %}
+  </p>{% endfor %}
+</section>

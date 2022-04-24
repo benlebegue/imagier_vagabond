@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+
+{% block page_title_current %}Thèmes des expositions{% endblock %}
+{% block body_class %}list-themes{% endblock %}
+
+{% block main_content %}
+  <div id="theme-related">
+    <h1>Expositions pour le thème <em>{{ theme.nom }}</em></h1>
+    {% if related %}
+      <ul class="expos-list expos-list-related">
+        {% for expo in related %}
+          <li class="expo-card">
+            <h3 class="expo-card-title"><a href="{{ expo.get_absolute_url }}">
+            {% thumbnail expo.vignette '80x80' crop='center' as img %}
+              <img src="{{ img.url }}" alt="" />
+            {% endthumbnail %}
+              {{ expo.titre }}
+            </a></h3>
+            <p class="expo-card-teaser">{{ expo.chapo|striptags }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>Aucune exposition trouvée.</p>
+    {% endif %}
+  </div>
+{% endblock main_content %}
+
+{% block sidebar %}
+  <div class="module">
+    <h2>Tous les thèmes</h2>
+    <p><a href="/themes/">Revenir à la liste des thèmes</a></p>
+  </div>
+  <div class="module">
+    {{ themes_info.contenu|safe }}
+  </div>
+{% endblock sidebar %}

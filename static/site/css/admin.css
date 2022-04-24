@@ -1,0 +1,209 @@
+/**
+ * Override some colors for better contrast
+ */
+.module h2,
+.module caption,
+.inline-group h2 {
+  color: #fff;
+  background: #417690;
+}
+div.breadcrumbs {
+  background: #21526a;
+}
+
+#result_list th,
+#result_list td {
+  vertical-align: middle;
+}
+
+.selector-filter label {
+  display: inline;
+  float: none;
+  width: auto !important;
+}
+
+.custom-thumb-label {
+  display: flex;
+  align-items: center;
+}
+.custom-thumb-label img {
+  width: 40px;
+  height: 40px;
+  margin-right: 8px;
+}
+
+/**
+ * Display custom readonly images as a floated image before the next field
+ */
+.custom-image-display {
+  overflow: hidden;
+}
+.custom-image-display .form-row {
+  border-bottom: none;
+}
+.custom-image-display h2 + .form-row {
+  float: left;
+  margin-right: 20px;
+  padding-bottom: 0;
+}
+.custom-image-display .form-row > div > label:first-child {
+  display: none;
+}
+.custom-image-display img {
+  width: 120px;
+  height: 120px;
+}
+.custom-image-display .file-upload {
+  font-size: 13px;
+}
+.custom-image-display .clearable-file-input {
+  display: block;
+}
+.custom-image-display .clearable-file-input label {
+  font-size: inherit;
+}
+.custom-image-display .clearable-file-input + br {
+  display: none;
+}
+
+
+#images-group .field-legende .vTextField {
+  width: 90%;
+}
+
+#images-group td.field-legende {
+  width: 50%;
+}
+
+/**
+ * Avoid Django's admin left-floated labels in form views
+ */
+.form-row {
+  /* default value of 'hidden' hides dropdowns from CKEditor */
+  overflow: visible;
+}
+@media (min-width: 768px) {
+  .form-row {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .form-row > div > * {
+    float: none;
+  }
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="url"],
+  input[type="number"],
+  input[type="tel"],
+  textarea,
+  select,
+  .vTextField {
+    box-sizing: border-box;
+    min-height: 32px;
+  }
+  .form-row > div > label:first-child,
+  .form-row .vTextField,
+  .form-row .vLargeTextField,
+  .form-row .vXMLLargeTextField,
+  .form-row .vURLField {
+    float: none;
+    box-sizing: border-box;
+    width: 100% !important;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .module.aligned ul,
+  .module.aligned label + p,
+  .module.aligned label + div.readonly,
+  .module.aligned label + p.file-upload {
+    margin-left: 0;
+  }
+  .module.aligned p.help,
+  .module.aligned div.help {
+    margin: 0;
+    padding: 6px 0;
+    font-size: 12px;
+  }
+
+  .submit-row input,
+  .submit-row a {
+    margin: 4px !important;
+  }
+}
+
+/**
+ * CKEditor content styling
+ */
+.ck-content.ck-content {
+  font-family: Arial, Helvetica, "Liberation Sans", sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.ck-content.ck-content h1 {
+  margin: 1em 0 0.75em 0;
+  font-size: 2em;
+}
+.ck-content.ck-content h2 {
+  margin: 1.5em 0 0.75em 0;
+  padding: 0;
+  font-size: 1.4em;
+  color: inherit;
+  background: transparent;
+}
+.ck-content.ck-content h3 {
+  margin: 1.5em 0 0.5em 0;
+  padding: 0;
+  font-size: 1.15em;
+}
+.ck-content.ck-content p {
+  margin: 0.5em 0;
+  font-size: 1em;
+  line-height: 1.5;
+}
+.ck-content.ck-content ol,
+.ck-content.ck-content ul {
+  margin-left: 0;
+  padding-left: 30px;
+}
+.ck-content.ck-content li {
+  margin: 0.25em 0;
+  font-size: 1em;
+  line-height: 1.5;
+}
+.ck-content.ck-content ul > li {
+  list-style: disc;
+}
+.ck-content.ck-content cite {
+  padding: 0 2px;
+  color: #111;
+  background: #ff9;
+}
+.ck-content.ck-content blockquote {
+  font-size: 100%;
+  color: inherit;
+}
+/* Not used for now.
+.ck-content .illus-left {
+  float: left;
+  margin: 5px 20px 15px 0;
+}
+.ck-content .illus-right {
+  float: right;
+  margin: 5px 0 15px 20px;
+}
+.ck-content .illus-center {
+  margin: 20px auto;
+  text-align: center;
+}
+.ck-content .illus-left img,
+.ck-content .illus-right img,
+.ck-content .illus-center img {
+  vertical-align: middle;
+}
+*/
+.ck-source-editing-area textarea {
+  font-family: Menlo, Monaco, Consolas, monospace !important;
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+}

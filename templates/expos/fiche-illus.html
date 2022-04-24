@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+
+{% block page_title_current %}{% if illus.prenom %}{{ illus.prenom }} {% endif %}{{ illus.nom }}{% endblock %}
+{% block body_class %}fiche-illus{% endblock %}
+
+{% block main_content %}
+  <div id="fiche-illus">
+
+    <p class="suptitle">L’Imagier Vagabond présente:</p>
+    <h1>{% if illus.prenom %}{{ illus.prenom }} {% endif %}{{ illus.nom }}</h1>
+
+    {% if illus.portrait or illus.presentation %}
+    <section id="illus-details">
+      {% if illus.portrait %}
+        {% thumbnail illus.portrait '220x220' crop='center' as img %}
+        <img class="portrait" alt="" src="{{ img.url }}" />
+        {% endthumbnail %}
+      {% endif %}
+      <div class="presentation">
+        {{ illus.presentation|safe }}
+      </div>
+      {% if illus.site_web %}
+        <p class="web">
+          <strong>Site web:</strong>
+          <a href="{{ illus.site_web }}">{{ illus.site_web }}</a>
+        </p>
+      {% endif %}
+      {% if illus.email %}
+        <p class="mail">
+          <strong>Adresse e-mail:</strong>
+          <span class="nospam">{{ illus.email_protected }}</span>
+        </p>
+      {% endif %}
+    </section>
+    {% endif %}
+
+    <section id="illus-related">
+      <h2>Expositions</h2>
+      <p class="info">Les œuvres de {{ illus.prenom }} {{ illus.nom }}
+      sont présentées dans les expositions suivantes:</p>
+      {% if related %}
+        <ul class="expos-list expos-list-related">
+          {% for expo in related %}{% include 'components/expo-card.html' %}{% endfor %}
+        </ul>
+      {% else %}
+        <p>Pas d’exposition disponible pour l’instant.</p>
+      {% endif %}
+    </section>
+
+  </div>{# #fiche-illus #}
+{% endblock main_content %}
+
+{% block sidebar %}
+  <section class="module all-illus">
+    <h2>Tous les illustrateurs</h2>
+    <p><a href="/illustrateurs/">Revenir à la liste des illustrateurs</a></p>
+    <ul>{% for some_illus in all_illus %}{% ifequal some_illus.url illus.url %}
+      <li class="current">{{ some_illus.prenom }} {{ some_illus.nom }}</li>{% else %}<li><a href="{{ some_illus.get_absolute_url }}">{{ some_illus.prenom }} {{ some_illus.nom }}</a></li>
+    {% endifequal %}{% endfor %}</ul>
+  </section>
+{% endblock sidebar %}
